@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>العقود العراقية</title>
+<style>
+:root{
+  --bg:#f3f5f8;--card:#fff;--text:#18212f;--muted:#718096;--primary:#0d6efd;
+  --border:#e3e8ef;--danger:#dc3545;--success:#198754;--gold:#b58b32;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);font-family:Tahoma,Arial,sans-serif;color:var(--text)}
+button,input,textarea,select{font-family:inherit}
+.app{width:100%;max-width:480px;min-height:100vh;margin:auto;background:var(--bg);position:relative;padding-bottom:78px}
+.topbar{background:#0f2942;color:#fff;padding:18px 16px 14px;position:sticky;top:0;z-index:20;box-shadow:0 2px 8px #0002}
+.topbar h1{font-size:20px;margin:0 0 5px;font-weight:800}.topbar small{opacity:.75}
+.screen{display:none;padding:14px}.screen.active{display:block}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px;margin-bottom:12px;box-shadow:0 3px 12px #1720330a}
+.section-title{font-weight:800;margin:4px 0 12px;font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.tile{border:1px solid var(--border);background:#fff;border-radius:15px;padding:16px 10px;min-height:112px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:9px;cursor:pointer;box-shadow:0 3px 9px #00000008}
+.tile:active{transform:scale(.98)}.icon{font-size:27px}.tile b{font-size:14px}.tile span{font-size:11px;color:var(--muted);text-align:center}
+.btn{border:0;border-radius:11px;padding:11px 14px;cursor:pointer;font-weight:700;font-size:13px}
+.btn-primary{background:var(--primary);color:#fff}.btn-dark{background:#26384d;color:#fff}.btn-light{background:#edf1f5;color:#26384d}.btn-danger{background:#fff0f1;color:var(--danger)}.btn-success{background:#eaf8f0;color:var(--success)}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}.btn-row .btn{flex:1}
+label{display:block;font-size:12px;font-weight:700;margin:10px 0 5px}
+input,textarea,select{width:100%;border:1px solid #d7dee7;background:#fff;border-radius:10px;padding:11px;font-size:13px;outline:none}
+textarea{min-height:78px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:#7aaef7;box-shadow:0 0 0 3px #0d6efd12}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:9px}.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
+.notice{padding:11px;border-radius:11px;background:#fff8df;border:1px solid #f1dda0;color:#725b10;font-size:12px;line-height:1.7}
+.success{background:#eaf8f0;border-color:#bce5cc;color:#176b38}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;height:68px;background:#fff;border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(3,1fr);z-index:30}
+.bottom button{border:0;background:#fff;color:#748091;font-size:10px;font-weight:700}.bottom button.active{color:var(--primary)}.bottom .bi{display:block;font-size:21px;margin-bottom:4px}
+.back{display:inline-flex;align-items:center;gap:6px;background:none;border:0;color:#fff;font-weight:700;font-size:13px;margin-bottom:9px}
+.subhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.subhead h2{font-size:17px;margin:0}
+.badge{padding:4px 8px;border-radius:20px;background:#eaf2ff;color:#0d6efd;font-size:10px;font-weight:800}
+.contract-item{display:flex;gap:10px;align-items:center}.contract-icon{width:44px;height:44px;border-radius:12px;background:#edf4ff;display:grid;place-items:center;font-size:21px}
+.contract-item .info{flex:1}.contract-item b{display:block;font-size:13px}.contract-item small{color:var(--muted);font-size:10px}
+.form-card{margin-bottom:10px}.form-card h3{font-size:14px;margin:0 0 10px}
+.photo{width:62px;height:62px;border-radius:10px;background:#eef2f6;display:grid;place-items:center;color:#8793a3;font-size:10px;border:1px dashed #bbc5d1}
+.preview-actions{position:sticky;bottom:76px;z-index:15;background:#f3f5f8;padding:8px 0}
+.paper{background:#fff;width:100%;min-height:620px;padding:20px 16px;margin-top:10px;position:relative;overflow:hidden;box-shadow:0 4px 20px #0001}
+.paper *{position:relative;z-index:2}.watermark{position:absolute;inset:0;display:grid;place-items:center;z-index:1!important;pointer-events:none;color:#000;opacity:.07;font-size:48px;font-weight:900;transform:rotate(-28deg)}
+.paper.classic{border:6px double #24384d}.paper.modern{border-right:8px solid #0d6efd;border-radius:14px}.paper.royal{border:5px double var(--gold);outline:1px solid var(--gold);outline-offset:-10px}.paper.white{border:2px solid #111}
+.paper.white .box{background:#fff!important;border:1px solid #111!important}
+.paper-header{text-align:center;border-bottom:1px solid #ccc;padding-bottom:10px;margin-bottom:12px}
+.paper-header h2{font-size:17px;margin:5px 0}.paper-header p{font-size:10px;margin:3px 0}
+.box{border:1px solid #cfd6df;border-radius:7px;padding:8px;margin:7px 0;background:#fafbfc;font-size:10px;line-height:1.7}
+.signs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:15px}.sign{height:72px;border:1px solid #bbb;border-radius:6px;text-align:center;padding:8px;font-size:9px}
+.witness{margin-top:10px;border-top:1px solid #aaa;padding-top:9px}.witness-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.template-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.template{padding:10px;border:2px solid var(--border);border-radius:13px;cursor:pointer;background:#fff}.template.selected{border-color:var(--primary);box-shadow:0 0 0 2px #0d6efd18}.mini{height:110px;padding:8px;background:#fff;margin-bottom:6px;font-size:8px;overflow:hidden}.mini.classic{border:4px double #24384d}.mini.modern{border-right:7px solid #0d6efd;border-radius:9px}.mini.royal{border:4px double #b58b32}.mini.white{border:2px solid #111}.template b{font-size:11px}
+.switch{display:flex;align-items:center;justify-content:space-between;padding:10px 0}.switch input{width:45px}
+.kpi{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.kpi .card{margin:0}.num{font-size:22px;font-weight:900}.muted{color:var(--muted);font-size:11px}
+hr{border:0;border-top:1px solid var(--border);margin:13px 0}
+.hidden{display:none!important}
+@media print{
+ body{background:#fff}.app{max-width:none;padding:0}.topbar,.bottom,.preview-actions,.no-print{display:none!important}
+ .screen{display:none!important}.screen.printable{display:block;padding:0}
+ .paper{box-shadow:none;margin:0;min-height:auto;page-break-after:always}
+}
+.party-print-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;direction:rtl}.party-print-box{border:1px solid #222;border-radius:6px;padding:9px;min-height:145px}.party-title{text-align:center;font-weight:900;font-size:12px;border-bottom:1px solid #999;padding-bottom:5px;margin-bottom:7px}.party-body{display:flex;gap:8px;align-items:flex-start}.print-photo{width:62px;height:78px;border:1px solid #222;flex:0 0 62px;display:grid;place-items:center;font-size:8px;text-align:center;overflow:hidden}.print-photo img{width:100%;height:100%;object-fit:cover}.party-info{font-size:9px;line-height:1.8;flex:1}.witness-print-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;direction:rtl}.witness-print-box{border:none!important;min-height:65px;padding:8px 4px;font-size:9px}.debt-filter-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}.debt-filter-grid .btn{width:100%}.debt-filter-grid .btn.active{background:#0d6efd;color:#fff}.debt-item{display:flex;align-items:flex-start;gap:8px}.debt-item .info{flex:1;min-width:0}.debt-item .info b{display:block;font-size:12px;margin-bottom:4px}.debt-item .info small{display:block;font-size:10px;color:var(--muted);line-height:1.8}.debt-amount{font-weight:900;color:#b42318;font-size:12px;white-space:nowrap}.debt-stat-row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);font-size:12px}.debt-stat-row:last-child{border-bottom:0}.calc-result{padding:12px;background:#edf4ff;border-radius:12px;margin-top:12px;line-height:1.9}.progress{height:8px;background:#e6ebf2;border-radius:10px;overflow:hidden;margin-top:8px}.progress span{display:block;height:100%;background:#198754;width:0}.person-photo-row{display:flex;gap:8px;align-items:center}.person-photo-row .photo{flex:0 0 62px}''</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+  <button class="back hidden" id="backBtn" onclick="goHome()">← رجوع</button>
+  <h1 id="topTitle">العقود العراقية</h1><small id="topSub">إدارة العقود الرسمية بدون إنترنت</small>
+</header>
+
+<section id="home" class="screen active">
+  <div class="card">
+    <div class="section-title">لوحة التحكم</div>
+    <div class="kpi">
+      <div class="card"><div class="num" id="countContracts">0</div><div class="muted">عقد محفوظ</div></div>
+      <div class="card"><div class="num" id="countInstall">24س</div><div class="muted">الفترة التجريبية</div></div>
+    </div>
+  </div>
+  <div class="section-title">الأقسام</div>
+  <div class="grid">
+    <div class="tile" onclick="show('contracts')"><div class="icon">📂</div><b>العقود المحفوظة</b><span>عرض وتعديل وحذف العقود</span></div>
+    <div class="tile" onclick="newContract()"><div class="icon">➕</div><b>عقد جديد</b><span>إنشاء عقد رسمي</span></div>
+    <div class="tile" onclick="show('settings')"><div class="icon">⚙️</div><b>الإعدادات</b><span>المكتب والعقد والتصميم</span></div>
+    <div class="tile" onclick="show('activation')"><div class="icon">🔐</div><b>التفعيل والنسخ</b><span>تفعيل ونسخ احتياطي</span></div>
+  </div>
+</section>
+
+<section id="contracts" class="screen">
+ <div class="subhead"><h2>العقود المنظمة</h2><span class="badge">حسب النوع</span></div>
+ <div id="contractCategories"></div>
+</section>
+
+<section id="newContract" class="screen">
+ <div class="subhead"><h2 id="contractFormTitle">إنشاء عقد جديد</h2><span class="badge">يعمل محلياً</span></div>
+ <div class="card form-card">
+  <h3>بيانات العقد</h3>
+  <div class="row"><div><label>نوع العقد</label><select id="ctype"><option>عقد بيع السيارات</option><option>عقد بيع الدراجات</option><option>عقد إيجار</option><option>عقد بيع عقار</option><option>عقد بيع أرض</option></select></div><div><label>اسم العقد الظاهر</label><input id="cname" placeholder="يمكن تغيير الاسم"></div></div>
+  <label>نوع التصميم / نموذج الطباعة</label><select id="contractTemplate"><option value="classic">النموذج 1 — كلاسيكي رسمي</option><option value="modern">النموذج 2 — عصري حديث</option><option value="royal">النموذج 3 — ملكي فاخر</option><option value="white">النموذج 4 — أبيض رسمي</option></select>
+  <label>اسم المكتب لهذا العقد</label><input id="officeOverride" placeholder="اتركه فارغاً لاستخدام الاسم الافتراضي">
+ </div>
+ <div class="card form-card">
+  <h3>الطرف الأول</h3><div class="row"><input id="p1name" placeholder="الاسم الكامل"><input id="p1phone" placeholder="رقم الهاتف"></div>
+  <label>رقم البطاقة الوطنية</label><input id="p1id" placeholder="رقم البطاقة">
+  <label>الصورة الشخصية — اختيارية</label><div class="person-photo-row"><div class="photo" id="p1PhotoPreview">الصورة</div><input id="p1photo" type="file" accept="image/*" onchange="previewPhoto(this,'p1PhotoPreview')"></div>
+ </div>
+ <div class="card form-card">
+  <h3>الطرف الثاني</h3><div class="row"><input id="p2name" placeholder="الاسم الكامل"><input id="p2phone" placeholder="رقم الهاتف"></div>
+  <label>رقم البطاقة الوطنية</label><input id="p2id" placeholder="رقم البطاقة">
+  <label>الصورة الشخصية — اختيارية</label><div class="person-photo-row"><div class="photo" id="p2PhotoPreview">الصورة</div><input id="p2photo" type="file" accept="image/*" onchange="previewPhoto(this,'p2PhotoPreview')"></div>
+ </div>
+ <div class="card form-card">
+  <h3>المواصفات والالتزام المالي</h3>
+  <label>تفاصيل الآلية / العقار / محل العقد</label><textarea id="details" placeholder="اكتب جميع المواصفات والتفاصيل"></textarea>
+  <div class="row3"><div><label>الإجمالي</label><input id="total" type="number"></div><div><label>المدفوع</label><input id="paid" type="number"></div><div><label>المتبقي</label><input id="remain" type="number" readonly></div></div>
+  <div class="row"><div><label>تاريخ استحقاق القسط</label><input id="due" type="date"></div><div><label>تنبيه الاستحقاق</label><select id="dueAlert"><option>قبل 1 يوم</option><option>قبل 3 أيام</option><option>قبل 7 أيام</option><option>بدون تنبيه</option></select></div></div>
+ </div>
+ <div class="card form-card">
+  <h3>التواقيع الثلاثية</h3>
+  <div class="row"><input id="sig1" placeholder="توقيع الطرف الأول"><input id="sig2" placeholder="توقيع الطرف الثاني"></div>
+  <label>توقيع الجهة المنظمة / المكتب</label><input id="sig3" placeholder="توقيع المكتب">
+ </div>
+ <div class="card form-card">
+  <h3>الشهود</h3>
+  <div id="witnessInputs"></div>
+  <button class="btn btn-light" onclick="addWitness()">+ إضافة شاهد آخر</button>
+ </div>
+ <div class="card form-card">
+  <h3>الشروط والأحكام القانونية</h3>
+  <div id="terms"></div>
+  <button class="btn btn-light" onclick="addTerm()">+ إضافة بند / شرط</button>
+ </div>
+ <div class="card form-card">
+  <h3>ملاحظات إضافية</h3><textarea id="notes" placeholder="ملاحظات أو نسبة التعويض الجزائي أو أي اتفاق إضافي"></textarea>
+ </div>
+ <div class="preview-actions"><div class="btn-row"><button class="btn btn-primary" onclick="saveContract()">حفظ العقد</button><button class="btn btn-dark" onclick="previewContract()">معاينة / طباعة</button></div></div>
+</section>
+
+<section id="settings" class="screen">
+ <div class="section-title">الإعدادات — اختر قسماً</div>
+ <div class="grid">
+  <div class="tile" onclick="show('officeSettings')"><div class="icon">🏢</div><b>إعدادات المكتب</b><span>الاسم والعنوان والهواتف</span></div>
+  <div class="tile" onclick="show('designSettings')"><div class="icon">🎨</div><b>تصميم العقد</b><span>4 نماذج والعلامة المائية</span></div>
+  <div class="tile" onclick="show('contractSettings')"><div class="icon">📝</div><b>إعدادات العقد</b><span>الاسم والشروط والملاحظات</span></div>
+ </div>
+</section>
+
+<section id="officeSettings" class="screen">
+ <div class="subhead"><h2>إعدادات المكتب</h2></div>
+ <div class="card"><label>اسم المكتب الافتراضي</label><input id="officeName" placeholder="اسم المكتب">
+ <label>اسم صاحب المكتب / المحامي</label><input id="ownerName" placeholder="الاسم">
+ <div class="row"><div><label>الهاتف الأول</label><input id="phone1"></div><div><label>الهاتف الثاني</label><input id="phone2"></div></div>
+ <label>العنوان الكامل</label><textarea id="officeAddress"></textarea>
+ <hr><button class="btn btn-primary" onclick="saveSettings()">حفظ إعدادات المكتب</button></div>
+</section>
+
+<section id="designSettings" class="screen">
+ <div class="subhead"><h2>نماذج العقد</h2></div>
+ <div class="card"><div class="template-grid">
+  <div class="template" data-template="classic" onclick="selectTemplate('classic')"><div class="mini classic">ترويسة رسمية<br><br>بيانات العقد<br><br>التواقيع</div><b>النموذج 1 — كلاسيكي رسمي</b></div>
+  <div class="template" data-template="modern" onclick="selectTemplate('modern')"><div class="mini modern">ترويسة حديثة<br><br>حاويات مستديرة<br><br>التواقيع</div><b>النموذج 2 — عصري حديث</b></div>
+  <div class="template" data-template="royal" onclick="selectTemplate('royal')"><div class="mini royal">ترويسة فاخرة<br><br>لمسات ذهبية<br><br>التواقيع</div><b>النموذج 3 — ملكي فاخر</b></div>
+  <div class="template" data-template="white" onclick="selectTemplate('white')"><div class="mini white">ورقة بيضاء<br><br>إطار أسود فقط<br><br>للطباعة</div><b>النموذج 4 — أبيض رسمي</b></div>
+ </div></div>
+ <div class="card">
+  <h3>العلامة المائية</h3>
+  <div class="switch"><span>إظهار العلامة المائية</span><input id="wmShow" type="checkbox" onchange="saveSettings()"></div>
+  <label>نص العلامة المائية</label><input id="wmText" placeholder="اسم المكتب أو نص مخصص">
+  <label>شفافية العلامة (%)</label><input id="wmOpacity" type="number" min="1" max="30" value="7">
+  <button class="btn btn-primary" onclick="saveSettings()">حفظ التصميم</button>
+ </div>
+ <div class="notice">اسم النموذج نفسه لا يظهر ولا يطبع داخل العقد النهائي. جميع خيارات التصميم والـ watermark تنطبق على كل النماذج.</div>
+</section>
+
+<section id="contractSettings" class="screen">
+ <div class="subhead"><h2>إعدادات العقد</h2></div>
+ <div class="card">
+  <label>اسم عقد افتراضي</label><input id="defaultContractName" placeholder="عقد بيع السيارات">
+  <label>شروط وأحكام افتراضية</label><div id="defaultTerms"></div><button class="btn btn-light" onclick="addDefaultTerm()">+ إضافة بند</button>
+  <label>ملاحظات افتراضية</label><textarea id="defaultNotes"></textarea>
+  <button class="btn btn-primary" onclick="saveSettings()">حفظ</button>
+ </div>
+</section>
+
+<section id="activation" class="screen">
+ <div class="section-title">التفعيل والنسخة الاحتياطية</div>
+ <div class="grid">
+  <div class="tile" onclick="show('activationTab')"><div class="icon">🔑</div><b>تفعيل البرنامج</b><span>Device ID وكود التفعيل</span></div>
+  <div class="tile" onclick="show('backupTab')"><div class="icon">☁️</div><b>النسخ الاحتياطي</b><span>Google وملف محلي</span></div>
+ </div>
+</section>
+
+<section id="activationTab" class="screen">
+ <div class="card"><h3>تفعيل البرنامج</h3><div class="notice">تجربة مجانية لمدة 24 ساعة من أول تشغيل. بعد انتهاء المدة يلزم إدخال كود التفعيل.</div>
+ <label>معرف الجهاز الرقمي (Device ID)</label><input id="deviceId" readonly>
+ <label>كود التفعيل — 5 مقاطع</label><input id="activationCode" placeholder="XXXXX-XXXXX-XXXXX-XXXXX-XXXXX">
+ <button class="btn btn-primary" onclick="activate()">تفعيل</button><p id="activationStatus" class="muted"></p>
+ <hr><small class="muted">في التطبيق الإنتاجي يُتحقق من توقيع HMAC-SHA256 على جهة موثوقة، مع ربط الكود حصرياً بمعرف الجهاز. هذه الصفحة تعرض واجهة الاختبار المحلية.</small>
+ </div>
+</section>
+
+<section id="backupTab" class="screen">
+ <div class="card"><h3>النسخ الاحتياطي السحابي</h3><div class="notice">واجهة جاهزة لربط Google Drive. يمكن أيضاً تصدير نسخة احتياطية محلية واستعادتها بدون إنترنت.</div>
+ <div class="btn-row"><button class="btn btn-primary" onclick="exportBackup()">تصدير نسخة محلية</button><button class="btn btn-light" onclick="document.getElementById('backupFile').click()">استعادة</button></div>
+ <input id="backupFile" type="file" accept=".json" class="hidden" onchange="importBackup(event)">
+ </div>
+</section>
+
+<section id="debts" class="screen">
+ <div class="subhead"><h2>إدارة الديون</h2><span class="badge">كل العقود</span></div>
+ <div class="kpi" id="debtKpis"></div>
+ <div class="card">
+  <h3 class="section-title">تصنيف الديون والعقود</h3>
+  <div class="debt-filter-grid">
+   <button class="btn btn-light active" data-debt-category="due" onclick="showDebtCategory('due')">الديون المستحقة</button>
+   <button class="btn btn-light" data-debt-category="near" onclick="showDebtCategory('near')">الديون القريبة</button>
+   <button class="btn btn-light" data-debt-category="paid" onclick="showDebtCategory('paid')">العقود المسددة</button>
+   <button class="btn btn-light" data-debt-category="nodate" onclick="showDebtCategory('nodate')">ديون بلا موعد</button>
+  </div>
+  <div class="notice" id="debtCategoryHelp">الديون التي حلّ موعد استحقاقها أو تأخرت، وما زال لها مبلغ متبقٍ.</div>
+  <div id="debtList"></div>
+ </div>
+ <div class="card">
+  <h3 class="section-title">حاسبة الديون</h3>
+  <div class="row"><div><label>المبلغ الإجمالي (د.ع)</label><input id="debtCalcTotal" type="number" min="0" placeholder="0" oninput="calcDebtTool()"></div><div><label>المبلغ المدفوع (د.ع)</label><input id="debtCalcPaid" type="number" min="0" placeholder="0" oninput="calcDebtTool()"></div></div>
+  <div class="calc-result"><div>المبلغ المتبقي: <b id="debtCalcRemain">0 د.ع</b></div><div>نسبة التسديد: <b id="debtCalcPercent">0%</b></div><div class="progress"><span id="debtCalcProgress"></span></div></div>
+ </div>
+ <div class="card">
+  <h3 class="section-title">إحصاء الديون عن جميع العقود</h3>
+  <div id="debtStats"></div>
+ </div>
+</section>
+
+<section id="preview" class="screen">
+ <div class="subhead"><h2>معاينة العقد</h2><div class="btn-row no-print"><button class="btn btn-primary" onclick="window.print()">طباعة / PDF</button><button class="btn btn-success" onclick="shareWhatsApp()">واتساب</button></div></div>
+ <div id="paperWrap"></div>
+</section>
+
+<nav class="bottom">
+ <button onclick="show('home')" id="navHome" class="active"><span class="bi">⌂</span>الرئيسية</button>
+ <button onclick="show('contracts')" id="navContracts"><span class="bi">▤</span>العقود</button>
+ <button onclick="show('debts')" id="navDebts"><span class="bi">د.ع</span>الديون</button>
+ 
+</nav>
+</div>
+
+<script>
+const KEY='iraqiContracts_v1';
+let db=JSON.parse(localStorage.getItem(KEY)||'null')||{
+ settings:{officeName:'مكتب العقود العراقية',ownerName:'',phone1:'',phone2:'',officeAddress:'',template:'classic',wmShow:true,wmText:'العقود العراقية',wmOpacity:7,defaultContractName:'عقد بيع السيارات',defaultTerms:['يقر الطرفان بصحة البيانات الواردة في هذا العقد.','تم الاتفاق والقبول بين الطرفين بكامل الأهلية القانونية.','يتحمل كل طرف الالتزامات المترتبة عليه وفقاً للعقد.','يخضع هذا العقد للقوانين النافذة في جمهورية العراق.'],defaultNotes:''},
+ contracts:[],activated:false,installAt:Date.now(),deviceId:''
+};
+if(!db.deviceId){db.deviceId='IRQ-'+crypto.getRandomValues(new Uint32Array(2)).join('').slice(0,12).toUpperCase();persist()}
+let editId=null, currentContract=null;
+function persist(){localStorage.setItem(KEY,JSON.stringify(db));}
+function show(id){
+ document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active','printable'));
+ const s=document.getElementById(id); if(s)s.classList.add('active');
+ document.querySelectorAll('.bottom button').forEach(x=>x.classList.remove('active'));
+ const map={home:'navHome',contracts:'navContracts',debts:'navDebts'};
+ if(map[id])document.getElementById(map[id]).classList.add('active');
+ document.getElementById('backBtn').classList.toggle('hidden',id==='home');
+ const titles={home:['العقود العراقية','إدارة العقود الرسمية بدون إنترنت'],contracts:['العقود المحفوظة','تعديل وحذف ومعاينة'],newContract:['إنشاء عقد','إدخال بيانات العقد'],settings:['الإعدادات','إعدادات المكتب والعقد والتصميم'],activation:['التفعيل والنسخ','حماية ونسخ احتياطي'],activationTab:['تفعيل البرنامج','Device ID وكود التفعيل'],backupTab:['النسخ الاحتياطي','حفظ واستعادة البيانات'],preview:['معاينة العقد','A4 — جاهز للطباعة'],debts:['إدارة الديون','الديون المستحقة والقريبة وإحصاء جميع العقود']};
+ if(titles[id]){topTitle.textContent=titles[id][0];topSub.textContent=titles[id][1]}
+ if(id==='contracts')renderContracts();
+ if(id==='debts')renderDebts();
+ if(id==='officeSettings'||id==='designSettings'||id==='contractSettings')loadSettingsUI();
+ if(id==='activationTab')deviceId.value=db.deviceId;
+ if(id==='newContract'&&!editId)resetForm();
+}
+function goHome(){show('home')}
+function newContract(){editId=null;show('newContract');resetForm()}
+function resetForm(){
+ document.querySelectorAll('#newContract input,#newContract textarea').forEach(x=>{if(x.type!=='file')x.value=''});
+ ctype.value='عقد بيع السيارات'; cname.value=db.settings.defaultContractName; officeOverride.value=''; contractTemplate.value=db.settings.template||'classic'; dueAlert.value='قبل 1 يوم';
+ remain.value='0'; terms.innerHTML=''; witnessInputs.innerHTML='';
+ db.settings.defaultTerms.forEach(t=>addTerm(t)); addWitness(); addWitness();
+ contractFormTitle.textContent='إنشاء عقد جديد';
+}
+function addTerm(v=''){const d=document.createElement('div');d.className='row';d.innerHTML=`<input class="term" value="${esc(v)}" placeholder="اكتب الشرط أو البند القانوني"><button class="btn btn-danger" type="button" onclick="this.parentElement.remove()">حذف</button>`;terms.appendChild(d)}
+function addDefaultTerm(v=''){const d=document.createElement('div');d.className='row';d.innerHTML=`<input class="dterm" value="${esc(v)}" placeholder="اكتب البند"><button class="btn btn-danger" type="button" onclick="this.parentElement.remove()">حذف</button>`;defaultTerms.appendChild(d)}
+function addWitness(n=''){const index=document.querySelectorAll('#witnessInputs .wit').length;const label=index===0?'الشاهد الأول':index===1?'الشاهد الثاني':`الشاهد رقم ${index+1}`;const d=document.createElement('div');d.className='row';d.innerHTML=`<input class="wit" value="${esc(n)}" placeholder="اسم ${label}" aria-label="اسم ${label}"><button class="btn btn-danger" type="button" onclick="this.parentElement.remove()">حذف</button>`;witnessInputs.appendChild(d)}
+function calcRemain(){remain.value=Math.max(0,(+total.value||0)-(+paid.value||0))}
+total.oninput=calcRemain;paid.oninput=calcRemain;
+function collect(){
+ return {id:editId||Date.now(),type:ctype.value,name:cname.value.trim()||ctype.value,template:contractTemplate.value||db.settings.template||'classic',office:officeOverride.value.trim(),p1:{name:p1name.value,phone:p1phone.value,id:p1id.value,photo:p1photo.dataset.data||''},p2:{name:p2name.value,phone:p2phone.value,id:p2id.value,photo:p2photo.dataset.data||''},details:details.value,total:total.value,paid:paid.value,remain:remain.value,due:due.value,alert:dueAlert.value,sigs:[sig1.value,sig2.value,sig3.value],witnesses:[...document.querySelectorAll('.wit')].map(x=>x.value).filter(Boolean),terms:[...document.querySelectorAll('.term')].map(x=>x.value).filter(Boolean),notes:notes.value,date:new Date().toLocaleDateString('ar-IQ')};
+}
+function saveContract(){
+ const c=collect(); if(editId){const i=db.contracts.findIndex(x=>x.id===editId);if(i>=0)db.contracts[i]=c}else db.contracts.unshift(c);
+ persist();editId=c.id;alert('تم حفظ العقد بنجاح');show('contracts');
+}
+function renderContracts(){
+ countContracts.textContent=db.contracts.length;
+ const cats={}; db.contracts.forEach(c=>(cats[c.type]??=[]).push(c));
+ const order=['عقد بيع السيارات','عقد بيع الدراجات','عقد إيجار','عقد بيع عقار','عقد بيع أرض'];
+ const keys=[...order,...Object.keys(cats).filter(k=>!order.includes(k))]; contractCategories.innerHTML='';
+ if(!db.contracts.length){contractCategories.innerHTML='<div class="card muted">لا توجد عقود منظمة بعد.</div>';return}
+ keys.filter(k=>cats[k]).forEach(k=>{const box=document.createElement('div');box.className='card';box.innerHTML=`<div class="subhead"><h2 style="font-size:14px">${esc(k)}</h2><span class="badge">${cats[k].length} عقد</span></div>`;cats[k].forEach(c=>{const d=document.createElement('div');d.className='card contract-item';d.innerHTML=`<div class="contract-icon">📄</div><div class="info"><b>${esc(c.name)}</b><small>${esc(c.p1.name||'بدون طرف أول')} ← ${esc(c.p2.name||'بدون طرف ثانٍ')} · ${esc(c.date)}</small></div><button class="btn btn-light" onclick="editContract(${c.id})">تعديل</button><button class="btn btn-danger" onclick="deleteContract(${c.id})">حذف</button>`;box.appendChild(d)});contractCategories.appendChild(box)})
+}
+function editContract(id){
+ const c=db.contracts.find(x=>x.id===id);if(!c)return;editId=id;show('newContract');contractFormTitle.textContent='تعديل العقد المحفوظ';
+ ctype.value=c.type;cname.value=c.name;contractTemplate.value=c.template||db.settings.template||'classic';officeOverride.value=c.office||'';p1name.value=c.p1.name;p1phone.value=c.p1.phone;p1id.value=c.p1.id;p2name.value=c.p2.name;p2phone.value=c.p2.phone;p2id.value=c.p2.id;details.value=c.details;total.value=c.total;paid.value=c.paid;remain.value=c.remain;due.value=c.due||'';dueAlert.value=c.alert||'قبل 1 يوم';sig1.value=(c.sigs||[])[0]||'';sig2.value=(c.sigs||[])[1]||'';sig3.value=(c.sigs||[])[2]||'';notes.value=c.notes||'';
+ terms.innerHTML='';(c.terms||[]).forEach(addTerm);witnessInputs.innerHTML='';(c.witnesses||[]).forEach(addWitness);if(!(c.witnesses||[]).length)addWitness();
+}
+function deleteContract(id){if(confirm('هل تريد حذف هذا العقد نهائياً؟')){db.contracts=db.contracts.filter(x=>x.id!==id);persist();renderContracts()}}
+function loadSettingsUI(){
+ const s=db.settings;officeName.value=s.officeName;ownerName.value=s.ownerName;phone1.value=s.phone1;phone2.value=s.phone2;officeAddress.value=s.officeAddress;wmShow.checked=s.wmShow;wmText.value=s.wmText;wmOpacity.value=s.wmOpacity;defaultContractName.value=s.defaultContractName;defaultNotes.value=s.defaultNotes;
+ defaultTerms.innerHTML='';s.defaultTerms.forEach(addDefaultTerm);document.querySelectorAll('.template').forEach(x=>x.classList.toggle('selected',x.dataset.template===s.template));
+}
+function saveSettings(){
+ const s=db.settings;s.officeName=officeName.value;s.ownerName=ownerName.value;s.phone1=phone1.value;s.phone2=phone2.value;s.officeAddress=officeAddress.value;s.wmShow=wmShow.checked;s.wmText=wmText.value||s.officeName;s.wmOpacity=+wmOpacity.value||7;s.defaultContractName=defaultContractName.value||'عقد بيع السيارات';s.defaultNotes=defaultNotes.value;s.defaultTerms=[...document.querySelectorAll('.dterm')].map(x=>x.value).filter(Boolean);persist();alert('تم حفظ الإعدادات')}
+function selectTemplate(t){db.settings.template=t;persist();loadSettingsUI()}
+function photoHTML(data){return data?`<img src="${data}" alt="الصورة">`:`<span>الصورة<br>اختياري</span>`}
+function previewContract(){
+ currentContract=collect();const c=currentContract;show('preview');document.getElementById('preview').classList.add('printable');const s=db.settings,office=c.office||s.officeName,template=c.template||s.template||'classic';
+ paperWrap.innerHTML=`<div class="paper ${template}">${s.wmShow?`<div class="watermark" style="opacity:${s.wmOpacity/100}">${esc(s.wmText||office)}</div>`:''}<div class="paper-header"><h2>${esc(c.name)}</h2><p>${esc(office)}</p><p>${esc(s.ownerName)} ${s.phone1?'· '+esc(s.phone1):''} ${s.phone2?'· '+esc(s.phone2):''}</p><p>${esc(s.officeAddress)}</p></div>
+ <div class="party-print-grid"><div class="party-print-box"><div class="party-title">الطرف الأول (البائع / المؤجر)</div><div class="party-body"><div class="party-info"><b>الاسم:</b> ${esc(c.p1.name)}<br><b>الهاتف:</b> ${esc(c.p1.phone)}<br><b>البطاقة:</b> ${esc(c.p1.id)}</div><div class="print-photo">${photoHTML(c.p1.photo)}</div></div></div><div class="party-print-box"><div class="party-title">الطرف الثاني (المشتري / المستأجر)</div><div class="party-body"><div class="party-info"><b>الاسم:</b> ${esc(c.p2.name)}<br><b>الهاتف:</b> ${esc(c.p2.phone)}<br><b>البطاقة:</b> ${esc(c.p2.id)}</div><div class="print-photo">${photoHTML(c.p2.photo)}</div></div></div></div>
+ <div class="box"><b>المواصفات والتفاصيل:</b><br>${esc(c.details)}</div><div class="box"><b>الالتزام المالي:</b> الإجمالي: ${esc(c.total)} · المدفوع: ${esc(c.paid)} · المتبقي: ${esc(c.remain)} · الاستحقاق: ${esc(c.due||'غير محدد')}</div><div class="box"><b>الشروط والأحكام:</b><ol>${c.terms.map(t=>`<li>${esc(t)}</li>`).join('')}</ol></div>${c.notes?`<div class="box"><b>ملاحظات إضافية:</b><br>${esc(c.notes)}</div>`:''}<div class="signs"><div class="sign">توقيع الطرف الأول<br><br>${esc(c.sigs[0]||'')}</div><div class="sign">توقيع الطرف الثاني<br><br>${esc(c.sigs[1]||'')}</div><div class="sign">توقيع الجهة المنظمة<br><br>${esc(c.sigs[2]||'')}</div></div>${(c.witnesses||[]).length?`<div class="witness"><b>الشهود</b><div class="witness-print-grid">${c.witnesses.slice(0,2).map((w,i)=>`<div class="witness-print-box"><b>${i===0?'الشاهد الأول':'الشاهد الثاني'}:</b> ${esc(w)}<br><br>التوقيع: __________</div>`).join('')}</div></div>`:''}</div>`;
+}
+let debtCategory='due';
+const moneyFormat=new Intl.NumberFormat('ar-IQ',{maximumFractionDigits:2});
+function money(value){return moneyFormat.format(Number(value)||0)+' د.ع'}
+function remainingOf(c){
+ const totalAmount=Number(c.total)||0,paidAmount=Number(c.paid)||0;
+ return Math.max(0,totalAmount-paidAmount);
+}
+function dateOnly(value){
+ if(!value)return null;
+ const parts=String(value).split('-').map(Number);
+ if(parts.length!==3||parts.some(n=>!Number.isFinite(n)))return null;
+ const d=new Date(parts[0],parts[1]-1,parts[2]);
+ return Number.isNaN(d.getTime())?null:d;
+}
+function dayDistance(value){
+ const d=dateOnly(value);if(!d)return null;
+ const today=new Date();today.setHours(0,0,0,0);d.setHours(0,0,0,0);
+ return Math.round((d.getTime()-today.getTime())/86400000);
+}
+function contractIsPaid(c){return (Number(c.total)||0)>0&&remainingOf(c)<=0}
+function contractIsOpen(c){return remainingOf(c)>0}
+function renderDebts(){
+ const contracts=db.contracts||[];
+ const open=contracts.filter(contractIsOpen);
+ const totalValue=contracts.reduce((sum,c)=>sum+(Number(c.total)||0),0);
+ const paidValue=contracts.reduce((sum,c)=>sum+Math.max(0,Number(c.paid)||0),0);
+ const debtValue=open.reduce((sum,c)=>sum+remainingOf(c),0);
+ const dueContracts=open.filter(c=>dayDistance(c.due)!==null&&dayDistance(c.due)<=0);
+ const nearContracts=open.filter(c=>{const n=dayDistance(c.due);return n!==null&&n>0&&n<=7});
+ const paidContracts=contracts.filter(contractIsPaid);
+ const noDateContracts=open.filter(c=>dayDistance(c.due)===null);
+ const dueValue=dueContracts.reduce((sum,c)=>sum+remainingOf(c),0);
+ const nearValue=nearContracts.reduce((sum,c)=>sum+remainingOf(c),0);
+ debtKpis.innerHTML=`
+  <div class="card"><div class="num" style="font-size:17px">${money(debtValue)}</div><div class="muted">إجمالي الديون المتبقية</div><small>${open.length} عقد غير مسدد بالكامل</small></div>
+  <div class="card"><div class="num" style="font-size:17px">${money(dueValue)}</div><div class="muted">ديون مستحقة</div><small>${dueContracts.length} عقد</small></div>
+  <div class="card"><div class="num" style="font-size:17px">${money(nearValue)}</div><div class="muted">ديون قريبة (7 أيام)</div><small>${nearContracts.length} عقد</small></div>
+  <div class="card"><div class="num">${paidContracts.length}</div><div class="muted">العقود المسددة</div><small>${money(paidContracts.reduce((sum,c)=>sum+(Number(c.total)||0),0))} إجمالي قيمتها</small></div>`;
+ debtStats.innerHTML=`
+  <div class="debt-stat-row"><span>عدد العقود المسجلة</span><b>${contracts.length}</b></div>
+  <div class="debt-stat-row"><span>عدد العقود غير المسددة بالكامل</span><b>${open.length}</b></div>
+  <div class="debt-stat-row"><span>إجمالي مبالغ العقود</span><b>${money(totalValue)}</b></div>
+  <div class="debt-stat-row"><span>إجمالي المبالغ المدفوعة</span><b>${money(paidValue)}</b></div>
+  <div class="debt-stat-row"><span>إجمالي الديون المتبقية</span><b>${money(debtValue)}</b></div>
+  <div class="debt-stat-row"><span>ديون مستحقة أو متأخرة</span><b>${money(dueValue)} (${dueContracts.length} عقد)</b></div>
+  <div class="debt-stat-row"><span>ديون تستحق خلال 7 أيام</span><b>${money(nearValue)} (${nearContracts.length} عقد)</b></div>
+  <div class="debt-stat-row"><span>ديون بلا تاريخ استحقاق</span><b>${money(noDateContracts.reduce((sum,c)=>sum+remainingOf(c),0))} (${noDateContracts.length} عقد)</b></div>
+  <div class="debt-stat-row"><span>عدد العقود المسددة بالكامل</span><b>${paidContracts.length}</b></div>`;
+ showDebtCategory(debtCategory,false);
+}
+function showDebtCategory(category,rerender=true){
+ debtCategory=category;
+ document.querySelectorAll('[data-debt-category]').forEach(b=>b.classList.toggle('active',b.dataset.debtCategory===category));
+ const all=db.contracts||[];
+ let entries=[],help='';
+ if(category==='due'){
+  entries=all.filter(c=>contractIsOpen(c)&&dayDistance(c.due)!==null&&dayDistance(c.due)<=0).sort((a,b)=>(a.due||'').localeCompare(b.due||''));
+  help='الديون التي حلّ موعد استحقاقها أو تأخرت، وما زال لها مبلغ متبقٍ.';
+ }else if(category==='near'){
+  entries=all.filter(c=>contractIsOpen(c)&&dayDistance(c.due)!==null&&dayDistance(c.due)>0&&dayDistance(c.due)<=7).sort((a,b)=>(a.due||'').localeCompare(b.due||''));
+  help='الديون التي يحل موعدها خلال الأيام السبعة القادمة.';
+ }else if(category==='paid'){
+  entries=all.filter(contractIsPaid);
+  help='العقود التي تمت تسوية كامل قيمتها وفق إجمالي العقد والمبلغ المدفوع.';
+ }else{
+  entries=all.filter(c=>contractIsOpen(c)&&dayDistance(c.due)===null);
+  help='عقود لها مبالغ متبقية ولكن لم يُحدد لها تاريخ استحقاق.';
+ }
+ const helpEl=document.getElementById('debtCategoryHelp');if(helpEl)helpEl.textContent=help;
+ const list=document.getElementById('debtList');if(!list)return;
+ if(!entries.length){list.innerHTML='<div class="muted" style="padding:14px 2px;text-align:center">لا توجد عقود ضمن هذا التصنيف.</div>';return}
+ list.innerHTML='';
+ entries.forEach(c=>{
+  const remain=remainingOf(c),days=dayDistance(c.due);
+  let dueText='غير محدد';
+  if(c.due){
+   dueText=c.due;
+   if(days!==null){if(days<0)dueText+=` · متأخر ${Math.abs(days)} يوم`;else if(days===0)dueText+=' · مستحق اليوم';else dueText+=` · بعد ${days} يوم`;}
+  }
+  const d=document.createElement('div');d.className='card debt-item';d.innerHTML=`<div class="info"><b>${esc(c.name||c.type||'عقد بدون اسم')}</b><small>${esc(c.p1?.name||'بدون طرف أول')} ← ${esc(c.p2?.name||'بدون طرف ثانٍ')}</small><small>الاستحقاق: ${esc(dueText)} · الإجمالي: ${money(c.total)} · المدفوع: ${money(c.paid)}</small><small>${esc(c.type||'')}</small></div><div><div class="debt-amount">${category==='paid'?'مسدد':money(remain)}</div><button class="btn btn-light" style="margin-top:8px;padding:7px 9px" onclick="editContract(${Number(c.id)})">فتح العقد</button></div>`;
+  list.appendChild(d);
+ });
+}
+function calcDebtTool(){
+ const totalAmount=Math.max(0,Number(document.getElementById('debtCalcTotal').value)||0);
+ const paidAmount=Math.max(0,Number(document.getElementById('debtCalcPaid').value)||0);
+ const remaining=Math.max(0,totalAmount-paidAmount);
+ const percent=totalAmount>0?Math.min(100,(paidAmount/totalAmount)*100):0;
+ document.getElementById('debtCalcRemain').textContent=money(remaining);
+ document.getElementById('debtCalcPercent').textContent=percent.toLocaleString('ar-IQ',{maximumFractionDigits:1})+'%';
+ document.getElementById('debtCalcProgress').style.width=percent+'%';
+}
+function shareWhatsApp(){const txt=`${currentContract?.name||'عقد'} - ${db.settings.officeName}`;window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank')}
+function exportBackup(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='نسخة_احتياطية_العقود_العراقية.json';a.click()}
+function importBackup(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{db=JSON.parse(r.result);persist();location.reload()}catch{alert('ملف النسخة الاحتياطية غير صالح')}};r.readAsText(f)}
+function previewPhoto(input,target){const f=input.files&&input.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{input.dataset.data=r.result;document.getElementById(target).innerHTML=`<img src="${r.result}" style="width:100%;height:100%;object-fit:cover">`};r.readAsDataURL(f)}
+function activate(){const code=activationCode.value.trim();if(code.split('-').length===5&&code.replaceAll('-','').length===25){db.activated=true;persist();activationStatus.textContent='تم تسجيل حالة التفعيل محلياً. في الإصدار الإنتاجي يجب التحقق من HMAC-SHA256 على كود صادر من المطور.';activationStatus.className='success'}else activationStatus.textContent='صيغة الكود يجب أن تتكون من 5 مقاطع.'}
+function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+document.addEventListener('DOMContentLoaded',()=>{countContracts.textContent=db.contracts.length;deviceId.value=db.deviceId;loadSettingsUI();calcDebtTool();show('home')});
+</script>
+</body>
+</html>
